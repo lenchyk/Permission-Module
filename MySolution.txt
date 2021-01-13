@@ -1,0 +1,113 @@
+﻿//  PERMISSIONS API 
+
+
+func createUser(user)
+
+
+func getUserPermissions(user) -> Array<Permission>
+
+
+func getUserRoles(user) -> Array<Role>
+
+
+//direct action permissions
+
+
+func directActionPermissionToUser(user, action, permissions)
+
+
+func hasUserActionPermission(user, action, permissions) -> boolean
+
+
+//direct access to a resource
+
+
+func directUserResourceAccess(user, resource, permissions)
+
+
+func hasUserResourceAccess(user, resource, permissions) -> boolean
+
+
+//role action permissions
+
+
+func registerRole(role, permissions) -> Role
+
+
+func assignRoleToUser(user, role)
+
+
+
+
+//role resource access 
+
+
+func roleUserResourceAccess(user, role, resource, permissions)
+
+
+func hasUserRoleResourceAccess(user) -> boolean
+
+
+
+
+
+
+class User() {
+        var name: String
+        var role: Array<Role>   // user can have more than 1 role
+        var permissions: Array<Permission>
+}
+
+
+class Permission() {
+        var action: Boolean?  // if there is action
+        var read: Boolean?    // if there is resource access
+        var write: Boolean?
+        func setPermission()
+func getPermissions()
+}
+
+
+class Action() {
+        var name: String
+        func someAction()
+}
+
+
+class Resource() {
+        var name: String
+        var path: String
+}
+
+
+class Role() {
+        var role: String
+var permissions: Array<Permission> 
+func setPermissions()
+}
+
+
+
+
+======================  DataBase  =======================
+
+
+Table Users {
+        UserID,
+        FirstName,
+        LastName,
+        UserPermissions,
+        UserRoles
+}
+
+
+Table Roles {
+        Role,
+        RolePermissions
+}
+
+
+Table Files {
+        FileName,
+        FilePath
+}
